@@ -111,6 +111,42 @@ describe('NgGenericPipe into component TestComponentThree', () => {
     });
 });
 
+@Component({template: '<div>{{ undefined | ngGenericPipe: test }}</div>'})
+class TestComponentFour {
+    public y: number = 2;
+    test(): number {
+        return this.y; 
+    }
+}
+describe('NgGenericPipe into component TestComponentFour', () => {
+
+    let fixture: ComponentFixture<TestComponentFour>;
+
+    let debugElement: DebugElement;
+    let element: HTMLElement;
+    let div: HTMLElement;
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+          declarations: [ TestComponentFour ],
+          imports: [NgGenericPipeModule]
+        });
+        fixture = TestBed.createComponent(TestComponentFour);
+        debugElement = fixture.debugElement;
+        element = debugElement.nativeElement;
+        div = fixture.nativeElement.querySelector('div');
+    });
+
+    afterEach(() => {
+        document.body.removeChild(element);
+    });
+
+    it('test basic function without arg', () => {
+        fixture.detectChanges();
+        expect(div.textContent).toContain('2');
+    });
+});
+
 describe('NgGenericPipe trasform method', () => {
 
     const y = 2;
