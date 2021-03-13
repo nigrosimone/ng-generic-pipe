@@ -4,7 +4,7 @@ Generic pipe for Angular application.
 
 ## Description
 
-Sometime there is a need to use a component method into component template. Angular best practice says do not use method into html temlate, eg. `{{ myMethod(2) }}`. With NgGenericPipe you can use all your component methods as pure pipe with component scope, eg: `{{ 2 | ngGenericPipe: myMethod }} }}`.
+Sometime there is a need to use a component method into component template. Angular best practice says do not use method into html temlate, eg. `{{ myMethod(2) }}`. With NgGenericPipe you can use all your public component methods as pure pipe with the component scope (`this`), eg: `{{ 2 | ngGenericPipe: myMethod }} }}`.
 
 See the [stackblitz demo](https://stackblitz.com/edit/demo-ng-generic-pipe?file=src%2Fapp%2Fapp.component.ts).
 
@@ -55,11 +55,52 @@ import { Component } from '@angular/core';
   {template: `<div>{{ 'Simone' | ngGenericPipe: sayHello }}</div>`}
 })
 export class AppComponent {
-    sayHello(name: sting): number {
+    sayHello(name: string): string {
       return `Hello! I'm ${name}.`; 
     }
 }
 ```
+
+## API
+
+`ngGenericPipe` need to pipe on a value. The value become the first argument of the funtion called by ngGenericPipe, eg.:
+
+```
+'Hello world!' | ngGenericPipe: writeMessage
+```
+
+is translated into:
+
+```ts
+writeMessage('Hello world!')
+```
+
+You can pass, multiple parameter in this way, eg.:
+
+```
+'Hello world!' | ngGenericPipe: writeMessage:'Simone'
+```
+
+is translated into:
+
+```ts
+writeMessage('Hello world!', 'Simone')
+```
+
+and with more parameters, eg.:
+
+```
+'Hello world!' | ngGenericPipe: writeMessage:'Simone':'Foo':'Bar':'Baz'
+```
+
+is translated into:
+
+```ts
+writeMessage('Hello world!', 'Simone', 'Foo', 'Bar', 'Baz')
+```
+
+Because `ngGenericPipe` is a pure pipe, the method is memoized. This means that the pipe transform the html only if an argument change. You can force the change by passing and aditional parameter that change when you need a repaint (see the example below "Call component method with component scope and force change detection
+").
 
 ## Examples
 
@@ -67,7 +108,7 @@ Below there are some examples of use case.
 
 ### Example: Call component method with component scope
 
-You can can call from template a componet method `test(x: number)` and access to the componet scope (`this`), eg.:
+You can call from template a componet method `test(x: number)` and access to the componet scope (`this`), eg.:
 
 ```ts
 import { Component } from '@angular/core';
@@ -88,7 +129,7 @@ export class AppComponent {
 
 ### Example: Call component method with component scope and multiple parameters
 
-You can can call from template a componet method `test(x: number, z: number)` and access to the componet scope (`this`), eg.:
+You can call from template a componet method `test(x: number, z: number)` and access to the componet scope (`this`), eg.:
 
 ```ts
 import { Component } from '@angular/core';
@@ -109,7 +150,7 @@ export class AppComponent {
 
 ### Example: Call component method with component scope and no parameters
 
-You can can call from template a componet method `test()` and access to the componet scope (`this`), eg.:
+You can call from template a componet method `test()` and access to the componet scope (`this`), eg.:
 
 ```ts
 import { Component } from '@angular/core';
@@ -130,7 +171,7 @@ export class AppComponent {
 
 ### Example: Call component method with component scope and force change detection
 
-You can can call from template a componet method `test()` and access to the componet scope (`this`), eg.:
+You can call from template a componet method `test()` and access to the componet scope (`this`), eg.:
 
 ```ts
 import { Component } from '@angular/core';
