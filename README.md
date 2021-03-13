@@ -45,6 +45,22 @@ import { NgGenericPipeModule } from 'ng-generic-pipe';
 export class AppModule { }
 ```
 
+*Step 3*: Use `ngGenericPipe` into your html template, eg.:
+
+```ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  {template: `<div>{{ 'Simone' | ngGenericPipe: sayHello }}</div>`}
+})
+export class AppComponent {
+    sayHello(name: sting): number {
+      return `Hello! I'm ${name}.`; 
+    }
+}
+```
+
 ## Examples
 
 Below there are some examples of use case.
