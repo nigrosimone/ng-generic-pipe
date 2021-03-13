@@ -63,7 +63,7 @@ export class AppComponent {
 
 ## API
 
-`ngGenericPipe` need to pipe on a value. The value become the first argument of the funtion called by ngGenericPipe, eg.:
+`ngGenericPipe` need to pipe on a value. The value become the first argument of the funtion called by `ngGenericPipe`, eg.:
 
 ```
 'Hello world!' | ngGenericPipe: writeMessage
