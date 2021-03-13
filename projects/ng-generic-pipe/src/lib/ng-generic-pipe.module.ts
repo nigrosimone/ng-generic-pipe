@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { NgGenericPipe } from './ng-generic-pipe.pipe';
 
 @NgModule({
@@ -7,9 +7,5 @@ import { NgGenericPipe } from './ng-generic-pipe.pipe';
   exports: [NgGenericPipe],
 })
 export class NgGenericPipeModule {
-  static forRoot(): ModuleWithProviders<NgGenericPipeModule> {
-    return {
-      ngModule: NgGenericPipeModule
-    };
-  }
+  
 }
