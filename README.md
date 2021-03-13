@@ -52,7 +52,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  {template: `<div>{{ 'Simone' | ngGenericPipe: sayHello }}</div>`}
+  template: `<div>{{ 'Simone' | ngGenericPipe: sayHello }}</div>`
 })
 export class AppComponent {
     sayHello(name: string): string {
@@ -115,7 +115,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  {template: '<div>{{ 3 | ngGenericPipe: test }}</div>'}
+  template: '<div>{{ 3 | ngGenericPipe: test }}</div>'
 })
 export class AppComponent {
 
@@ -136,7 +136,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  {template: '<div>{{ 3 | ngGenericPipe: test:3 }}</div>'}
+  template: '<div>{{ 3 | ngGenericPipe: test:3 }}</div>'
 })
 export class AppComponent {
 
@@ -157,7 +157,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  {template: '<div>{{ undefined | ngGenericPipe: test }}</div>'}
+  template: '<div>{{ undefined | ngGenericPipe: test }}</div>'
 })
 export class AppComponent {
 
@@ -178,10 +178,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  {template: `
+  template: `
     <div>{{ undefined | ngGenericPipe: test:i }}</div>
     <button (click)="onUpdate()">Update</button>
-  `}
+  `
 })
 export class AppComponent {
 
