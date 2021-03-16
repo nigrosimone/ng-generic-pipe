@@ -15,7 +15,7 @@ See the [stackblitz demo](https://stackblitz.com/edit/demo-ng-generic-pipe?file=
 
 ## Get Started
 
-*Step 1*: intall `ng-generic-pipe`
+*Step 1*: install `ng-generic-pipe`
 
 ```bash
 npm i ng-generic-pipe
