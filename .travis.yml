@@ -1,17 +1,17 @@
 language: node_js
 node_js:
-  - "10"
+  - "16"
 
 addons:
   chrome: stable
 
 cache:
   directories:
-     - ./node_modules
+    - ./node_modules
+    - ./.angular
 
 install:
   - npm install
-  - npm i -D typescript@4.1.5
 
 script:
   - npm run test ng-generic-pipe -- --code-coverage --no-watch --no-progress --browsers=ChromeHeadlessCI

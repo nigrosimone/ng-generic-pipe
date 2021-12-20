@@ -3,26 +3,26 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NgGenericPipe } from './ng-generic-pipe.pipe';
 import { NgGenericPipeModule } from './ng-generic-pipe.module';
 
-@Component({template: '<div>{{ 3 | ngGenericPipe: test }}</div>'})
-class TestComponentOne {
-    public y: number = 2;
+@Component({ template: '<div>{{ 3 | ngGenericPipe: test }}</div>' })
+class TestOneComponent {
+    public y = 2;
     test(x: number): number {
-        return x * this.y; 
+        return x * this.y;
     }
 }
 describe('NgGenericPipe into component TestComponentOne', () => {
 
-    let fixture: ComponentFixture<TestComponentOne>;
+    let fixture: ComponentFixture<TestOneComponent>;
     let debugElement: DebugElement;
     let element: HTMLElement;
     let div: HTMLElement;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-          declarations: [ TestComponentOne ],
-          imports: [NgGenericPipeModule]
+            declarations: [TestOneComponent],
+            imports: [NgGenericPipeModule]
         });
-        fixture = TestBed.createComponent(TestComponentOne);
+        fixture = TestBed.createComponent(TestOneComponent);
         debugElement = fixture.debugElement;
         element = debugElement.nativeElement;
         div = fixture.nativeElement.querySelector('div');
@@ -38,16 +38,16 @@ describe('NgGenericPipe into component TestComponentOne', () => {
     });
 });
 
-@Component({template: '<div>{{ 3 | ngGenericPipe: test:3 }}</div>'})
-class TestComponentTwo {
-    public y: number = 2;
+@Component({ template: '<div>{{ 3 | ngGenericPipe: test:3 }}</div>' })
+class TestTwoComponent {
+    public y = 2;
     test(x: number, z: number): number {
-        return x * this.y * z; 
+        return x * this.y * z;
     }
 }
 describe('NgGenericPipe into component TestComponentTwo', () => {
 
-    let fixture: ComponentFixture<TestComponentTwo>;
+    let fixture: ComponentFixture<TestTwoComponent>;
 
     let debugElement: DebugElement;
     let element: HTMLElement;
@@ -55,10 +55,10 @@ describe('NgGenericPipe into component TestComponentTwo', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-          declarations: [ TestComponentTwo ],
-          imports: [NgGenericPipeModule]
+            declarations: [TestTwoComponent],
+            imports: [NgGenericPipeModule]
         });
-        fixture = TestBed.createComponent(TestComponentTwo);
+        fixture = TestBed.createComponent(TestTwoComponent);
         debugElement = fixture.debugElement;
         element = debugElement.nativeElement;
         div = fixture.nativeElement.querySelector('div');
@@ -74,17 +74,17 @@ describe('NgGenericPipe into component TestComponentTwo', () => {
     });
 });
 
-@Component({template: '<div>{{ 3 | ngGenericPipe: test:3:time }}</div>'})
-class TestComponentThree {
-    public y: number = 2;
+@Component({ template: '<div>{{ 3 | ngGenericPipe: test:3:time }}</div>' })
+class TestThreeComponent {
+    public y = 2;
     public time: number = Date.now();
     test(x: number, z: number): number {
-        return x * this.y * z; 
+        return x * this.y * z;
     }
 }
 describe('NgGenericPipe into component TestComponentThree', () => {
 
-    let fixture: ComponentFixture<TestComponentThree>;
+    let fixture: ComponentFixture<TestThreeComponent>;
 
     let debugElement: DebugElement;
     let element: HTMLElement;
@@ -92,10 +92,10 @@ describe('NgGenericPipe into component TestComponentThree', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-          declarations: [ TestComponentThree ],
-          imports: [NgGenericPipeModule]
+            declarations: [TestThreeComponent],
+            imports: [NgGenericPipeModule]
         });
-        fixture = TestBed.createComponent(TestComponentThree);
+        fixture = TestBed.createComponent(TestThreeComponent);
         debugElement = fixture.debugElement;
         element = debugElement.nativeElement;
         div = fixture.nativeElement.querySelector('div');
@@ -111,16 +111,16 @@ describe('NgGenericPipe into component TestComponentThree', () => {
     });
 });
 
-@Component({template: '<div>{{ undefined | ngGenericPipe: test }}</div>'})
-class TestComponentFour {
-    public y: number = 2;
+@Component({ template: '<div>{{ undefined | ngGenericPipe: test }}</div>' })
+class TestFourComponent {
+    public y = 2;
     test(): number {
-        return this.y; 
+        return this.y;
     }
 }
 describe('NgGenericPipe into component TestComponentFour', () => {
 
-    let fixture: ComponentFixture<TestComponentFour>;
+    let fixture: ComponentFixture<TestFourComponent>;
 
     let debugElement: DebugElement;
     let element: HTMLElement;
@@ -128,10 +128,10 @@ describe('NgGenericPipe into component TestComponentFour', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-          declarations: [ TestComponentFour ],
-          imports: [NgGenericPipeModule]
+            declarations: [TestFourComponent],
+            imports: [NgGenericPipeModule]
         });
-        fixture = TestBed.createComponent(TestComponentFour);
+        fixture = TestBed.createComponent(TestFourComponent);
         debugElement = fixture.debugElement;
         element = debugElement.nativeElement;
         div = fixture.nativeElement.querySelector('div');
@@ -160,14 +160,14 @@ describe('NgGenericPipe trasform method', () => {
     });
 
     it('test basic function with arg', () => {
-        const fn = (x) => {
+        const fn = (x: number) => {
             return x * y;
         };
         expect(pipe.transform(2, fn)).toBe(4);
     });
 
     it('test basic function with arg and additional arg', () => {
-        const fn = (x) => {
+        const fn = (x: number) => {
             return x * 3;
         };
         expect(pipe.transform(2, fn, [1])).toBe(6);
