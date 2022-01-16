@@ -4,4 +4,6 @@
   <!-- wrong way for call a function nto html just for test the result -->
   HTML: {{ testFromHtml("arg1", "arg2") }}<br /><br />
   <button (click)="triggerCD()">test</button>
+  <br /><br />
+  PIPE: {{ "arg1" | ngGenericPipe: testAsync | async }}<br /><br />
 </main>

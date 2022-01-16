@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 
 @Component({
@@ -32,5 +33,9 @@ export class AppComponent {
 
   triggerCD(): void {
     this.name = new Date().getMinutes();
+  }
+
+  testAsync(a: string): Observable<string> {
+    return of(a);
   }
 }

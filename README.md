@@ -198,6 +198,39 @@ export class AppComponent {
 }
 ```
 
+### Example: Call observable component's method
+
+You can call from template a component's method `testAsync()` that return observable, eg.:
+
+```ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <div>{{ 'hello!' | ngGenericPipe: testAsync | async }}</div>
+  `
+})
+export class AppComponent {
+
+    testAsync(value: string): Observable<string> {
+      return of(value);
+    }
+
+}
+```
+
 ## Support
 
 This is an open-source project. Star this [repository](https://github.com/nigrosimone/ng-generic-pipe), if you like it, or even [donate](https://www.paypal.com/paypalme/snwp). Thank you so much!
+
+## My other libraries
+
+I have published some other Angular libraries, take a look:
+
+ - [NgSimpleState: Simple state management in Angular with only Services and RxJS](https://www.npmjs.com/package/ng-simple-state)
+ - [NgPortal: Component property connection in Angular application](https://www.npmjs.com/package/ng-portal)
+ - [NgHttpCaching: Cache for HTTP requests in Angular application](https://www.npmjs.com/package/ng-http-caching)
+ - [NgLet: Structural directive for sharing data as local variable into html component template](https://www.npmjs.com/package/ng-simple-state)
+ - [NgLock: Angular decorator for lock a function and user interface while a task running](https://www.npmjs.com/package/ng-lock)
+ - [NgCondition: An alternative to `*ngIf; else` directive for simplify conditions into HTML template for Angular application](https://www.npmjs.com/package/ng-condition)
