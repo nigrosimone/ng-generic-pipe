@@ -1,6 +1,6 @@
 # NgGenericPipe [![Build Status](https://travis-ci.org/nigrosimone/ng-generic-pipe.svg?branch=master)](https://travis-ci.com/github/nigrosimone/ng-generic-pipe) [![Coverage Status](https://coveralls.io/repos/github/nigrosimone/ng-generic-pipe/badge.svg?branch=master)](https://coveralls.io/github/nigrosimone/ng-generic-pipe?branch=master) [![NPM version](https://img.shields.io/npm/v/ng-generic-pipe.svg)](https://www.npmjs.com/package/ng-generic-pipe)
 
-Generic pipe for Angular application.
+Generic pipe for Angular application for use a component method into component template.
 
 ## Description
 
