@@ -1,7 +1,7 @@
 {
   "name": "ng-generic-pipe",
   "version": "13.0.1",
-  "description": "Generic pipe for Angular application.",
+  "description": "Generic pipe for Angular application for use a component method into component template.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nigrosimone/ng-generic-pipe.git"
