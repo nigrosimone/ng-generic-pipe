@@ -2,6 +2,14 @@ import { ChangeDetectorRef, EmbeddedViewRef, Type } from '@angular/core';
 import { Pipe } from '@angular/core';
 import { PipeTransform } from '@angular/core';
 
+// eslint-disable-next-line no-unused-vars
+type OmitFirstArg<F> = F extends (x: any, ...args: infer P) => infer R ? (...args: P) => R : never;
+
+type First<T> = T extends [infer U, ...any[]] ? U : any;
+
+type TailArguments<F> = [..._: Parameters<OmitFirstArg<F>>, ...args: any];
+
+
 @Pipe({
   name: 'ngGenericPipe',
   pure: true
@@ -14,11 +22,13 @@ export class NgGenericPipe implements PipeTransform {
     this.context = (cdRef as EmbeddedViewRef<Type<any>>).context;
   }
 
-  public transform(
-    headArgument: any,
-    fnReference: any,
-    ...tailArguments: any[]
-  ): any {
+  // eslint-disable-next-line no-unused-vars
+  public transform<T, K extends (...args: any) => ReturnType<K>>(
+    headArgument: First<Parameters<K>>,
+    fnReference: K,
+    ...tailArguments: TailArguments<K>
+  ): ReturnType<K> {
+    console.log({headArgument, tailArguments});
     return fnReference.apply(this.context, [headArgument, ...tailArguments]);
   }
 }
