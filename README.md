@@ -12,6 +12,7 @@ See the [stackblitz demo](https://stackblitz.com/edit/demo-ng-generic-pipe?file=
 
 ✅ More than 90% unit tested<br>
 ✅ Use all your component methods as pure pipe with component scope<br>
+✅ Strong type check<br>
 
 ## Get Started
 
