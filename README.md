@@ -103,6 +103,12 @@ writeMessage('Hello world!', 'Simone', 'Foo', 'Bar', 'Baz')
 Because `ngGenericPipe` is a pure pipe, the method is memoized. This means that the pipe transform the html only if an argument change. You can force the change by passing and aditional parameter that change when you need a repaint (see the example below "Call component method with component scope and force change detection
 ").
 
+## Strong type check
+
+`ngGenericPipe` has strong type checking
+
+![alt text](https://raw.githubusercontent.com/nigrosimone/ng-generic-pipe/master/help.gif)
+
 ## Examples
 
 Below there are some examples of use case.
