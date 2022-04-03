@@ -28,7 +28,6 @@ export class NgGenericPipe implements PipeTransform {
     fnReference: K,
     ...tailArguments: TailArguments<K>
   ): ReturnType<K> {
-    console.log({headArgument, tailArguments});
     return fnReference.apply(this.context, [headArgument, ...tailArguments]);
   }
 }
