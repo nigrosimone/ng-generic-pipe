@@ -156,8 +156,9 @@
       }
     }
   },
-  "defaultProject": "ng-generic-pipe",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
