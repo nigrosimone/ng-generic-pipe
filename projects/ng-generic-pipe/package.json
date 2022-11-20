@@ -1,6 +1,6 @@
 {
   "name": "ng-generic-pipe",
-  "version": "14.0.1",
+  "version": "15.0.0",
   "description": "Generic pipe for Angular application for use a component method into component template.",
   "repository": {
     "type": "git",
@@ -17,8 +17,8 @@
   },
   "homepage": "https://github.com/nigrosimone/ng-generic-pipe",
   "peerDependencies": {
-    "@angular/common": "^14.0.0",
-    "@angular/core": "^14.0.0"
+    "@angular/common": "^15.0.0",
+    "@angular/core": "^15.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
