@@ -1,20 +1,21 @@
 {
-  "name": "ng-let",
+  "name": "ng-generic-pipe",
   "version": "17.0.3",
-  "description": "Angular structural directive for sharing data as local variable into html component template.",
+  "description": "Generic pipe for Angular application for use a component method into component template.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nigrosimone/ng-let.git"
+    "url": "git+https://github.com/nigrosimone/ng-generic-pipe.git"
   },
   "keywords": [
-    "angular"
+    "angular",
+    "pipe"
   ],
   "author": "Simone Nigro <nigro.simone@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nigrosimone/ng-let/issues"
+    "url": "https://github.com/nigrosimone/ng-generic-pipe/issues"
   },
-  "homepage": "https://github.com/nigrosimone/ng-let",
+  "homepage": "https://github.com/nigrosimone/ng-generic-pipe",
   "peerDependencies": {
     "@angular/common": ">15.0.0",
     "@angular/core": ">15.0.0"
