@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChangeDetectorRef, EmbeddedViewRef, Type } from '@angular/core';
 import { Pipe } from '@angular/core';
 import { PipeTransform } from '@angular/core';
@@ -17,10 +18,11 @@ export class NgGenericPipe implements PipeTransform {
   private context: any;
 
   constructor(cdRef: ChangeDetectorRef) {
-    // retrive component instance (this is a workaround)
+    // retrieve component instance (this is a workaround)
     this.context = (cdRef as EmbeddedViewRef<Type<any>>).context;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public transform<T, K extends (...args: any) => ReturnType<K>>(
     headArgument: First<Parameters<K>>,
     fnReference: K,

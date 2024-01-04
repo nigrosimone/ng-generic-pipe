@@ -147,9 +147,10 @@ describe('NgGenericPipe into component TestComponentFour', () => {
     });
 });
 
-describe('NgGenericPipe trasform method', () => {
+describe('NgGenericPipe transform method', () => {
 
     const y = 2;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const pipe = new NgGenericPipe({ context: this } as any);
 
     it('test basic function without arg', () => {
