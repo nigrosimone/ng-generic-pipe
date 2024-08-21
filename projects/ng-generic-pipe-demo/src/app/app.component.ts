@@ -13,7 +13,7 @@ export class AppComponent {
   public name: number | null = null;
 
   constructor() {
-    this.triggerCD();
+    this.triggerCD(false);
   }
 
   test(a: string, b: string): string {
@@ -31,8 +31,11 @@ export class AppComponent {
     return this.test(a, b);
   }
 
-  triggerCD(): void {
+  triggerCD(force: boolean): void {
     this.name = new Date().getMinutes();
+    if( force ){
+      this.name++;
+    }
   }
 
   testAsync(a: string): Observable<string> {
