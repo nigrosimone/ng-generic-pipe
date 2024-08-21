@@ -17,7 +17,7 @@ export class AppComponent {
   }
 
   test(a: string, b: string): string {
-    // test multiple arguments anch this scope works
+    // test multiple arguments and this scope works
     return `a:${a}; b:${b}; name:${this.name};`;
   }
 
