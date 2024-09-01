@@ -15,12 +15,8 @@ type TailArguments<F> = [..._: Parameters<OmitFirstArg<F>>, ...args: any];
   pure: true
 })
 export class NgGenericPipe implements PipeTransform {
-  private context: any;
 
-  constructor(cdRef: ChangeDetectorRef) {
-    // retrieve component instance (this is a workaround)
-    this.context = (cdRef as EmbeddedViewRef<Type<any>>).context;
-  }
+  constructor(private cdRef: ChangeDetectorRef) { }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public transform<T, K extends (...args: any) => ReturnType<K>>(
@@ -28,6 +24,6 @@ export class NgGenericPipe implements PipeTransform {
     fnReference: K,
     ...tailArguments: TailArguments<K>
   ): ReturnType<K> {
-    return fnReference.apply(this.context, [headArgument, ...tailArguments]);
+    return fnReference.apply((this.cdRef as EmbeddedViewRef<Type<any>>).context, [headArgument, ...tailArguments]);
   }
 }
