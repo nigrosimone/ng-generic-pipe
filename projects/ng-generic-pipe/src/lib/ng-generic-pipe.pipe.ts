@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChangeDetectorRef, EmbeddedViewRef, Type } from '@angular/core';
+import { ChangeDetectorRef, EmbeddedViewRef, inject, Type } from '@angular/core';
 import { Pipe } from '@angular/core';
 import { PipeTransform } from '@angular/core';
 
@@ -12,11 +12,12 @@ type TailArguments<F> = [..._: Parameters<OmitFirstArg<F>>, ...args: any];
 
 @Pipe({
   name: 'ngGenericPipe',
-  pure: true
+  pure: true,
+  standalone: true
 })
 export class NgGenericPipe implements PipeTransform {
 
-  constructor(private cdRef: ChangeDetectorRef) { }
+  private cdRef = inject(ChangeDetectorRef)
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public transform<T, K extends (...args: any) => ReturnType<K>>(

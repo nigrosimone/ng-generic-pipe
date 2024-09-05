@@ -4,7 +4,7 @@ Generic pipe for Angular application for use a component method into component t
 
 ## Description
 
-Sometime there is a need to use a component method into component template. Angular best practice says do not use method into html temlate, eg. `{{ myMethod(2) }}`. With NgGenericPipe you can use all your public component methods as pure pipe with the component scope (`this`), eg: `{{ 2 | ngGenericPipe: myMethod }}`.
+Sometime there is a need to use a component method into component template. Angular best practice says do not use method into html template, eg. `{{ myMethod(2) }}`. With NgGenericPipe you can use all your public component methods as pure pipe with the component scope (`this`), eg: `{{ 2 | ngGenericPipe: myMethod }}`.
 
 See the [stackblitz demo](https://stackblitz.com/edit/demo-ng-generic-pipe?file=src%2Fapp%2Fapp.component.ts).
 
@@ -22,38 +22,17 @@ See the [stackblitz demo](https://stackblitz.com/edit/demo-ng-generic-pipe?file=
 npm i ng-generic-pipe
 ```
 
-*Step 2*: Import `NgGenericPipeModule` into your app module, eg.:
-
-```ts
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
-import { NgGenericPipeModule } from 'ng-generic-pipe';
-
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgGenericPipeModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-  ],
-})
-export class AppModule { }
-```
-
-*Step 3*: Use `ngGenericPipe` into your html template, eg.:
+*Step 2*: Use `ngGenericPipe` into your HTML template, eg.:
 
 ```ts
 import { Component } from '@angular/core';
+import { NgGenericPipe } from 'ng-generic-pipe';
 
 @Component({
   selector: 'app-root',
-  template: `<div>{{ 'Simone' | ngGenericPipe: sayHello }}</div>`
+  template: `<div>{{ 'Simone' | ngGenericPipe: sayHello }}</div>`,
+  standalone: true,
+  imports: [NgGenericPipe],
 })
 export class AppComponent {
     sayHello(name: string): string {
@@ -64,7 +43,7 @@ export class AppComponent {
 
 ## API
 
-`ngGenericPipe` need to pipe on a value. The value become the first argument of the funtion called by `ngGenericPipe`, eg.:
+`ngGenericPipe` need to pipe on a value. The value become the first argument of the function called by `ngGenericPipe`, eg.:
 
 ```
 'Hello world!' | ngGenericPipe: writeMessage
@@ -100,7 +79,7 @@ is translated into:
 writeMessage('Hello world!', 'Simone', 'Foo', 'Bar', 'Baz')
 ```
 
-Because `ngGenericPipe` is a pure pipe, the method is memoized. This means that the pipe transform the html only if an argument change. You can force the change by passing and aditional parameter that change when you need a repaint (see the example below "Call component method with component scope and force change detection
+Because `ngGenericPipe` is a pure pipe, the method is memoized. This means that the pipe transform the html only if an argument change. You can force the change by passing and additional parameter that change when you need a repaint (see the example below "Call component method with component scope and force change detection
 ").
 
 ## Strong type check
@@ -115,14 +94,17 @@ Below there are some examples of use case.
 
 ### Example: Call component method with component scope
 
-You can call from template a componet method `test(x: number)` and access to the componet scope (`this`), eg.:
+You can call from template a component method `test(x: number)` and access to the component scope (`this`), eg.:
 
 ```ts
 import { Component } from '@angular/core';
+import { NgGenericPipe } from 'ng-generic-pipe';
 
 @Component({
   selector: 'app-root',
-  template: '<div>{{ 3 | ngGenericPipe: test }}</div>'
+  template: '<div>{{ 3 | ngGenericPipe: test }}</div>',
+  standalone: true,
+  imports: [NgGenericPipe],
 })
 export class AppComponent {
 
@@ -136,14 +118,17 @@ export class AppComponent {
 
 ### Example: Call component method with component scope and multiple parameters
 
-You can call from template a componet method `test(x: number, z: number)` and access to the componet scope (`this`), eg.:
+You can call from template a component method `test(x: number, z: number)` and access to the component scope (`this`), eg.:
 
 ```ts
 import { Component } from '@angular/core';
+import { NgGenericPipe } from 'ng-generic-pipe';
 
 @Component({
   selector: 'app-root',
-  template: '<div>{{ 3 | ngGenericPipe: test:3 }}</div>'
+  template: '<div>{{ 3 | ngGenericPipe: test:3 }}</div>',
+  standalone: true,
+  imports: [NgGenericPipe],
 })
 export class AppComponent {
 
@@ -157,14 +142,17 @@ export class AppComponent {
 
 ### Example: Call component method with component scope and no parameters
 
-You can call from template a componet method `test()` and access to the componet scope (`this`), eg.:
+You can call from template a component method `test()` and access to the component scope (`this`), eg.:
 
 ```ts
 import { Component } from '@angular/core';
+import { NgGenericPipe } from 'ng-generic-pipe';
 
 @Component({
   selector: 'app-root',
-  template: '<div>{{ undefined | ngGenericPipe: test }}</div>'
+  template: '<div>{{ undefined | ngGenericPipe: test }}</div>',
+  standalone: true,
+  imports: [NgGenericPipe],
 })
 export class AppComponent {
 
@@ -178,17 +166,19 @@ export class AppComponent {
 
 ### Example: Call component method with component scope and force change detection
 
-You can call from template a componet method `test()` and access to the componet scope (`this`), eg.:
+You can call from template a component method `test()` and access to the component scope (`this`), eg.:
 
 ```ts
 import { Component } from '@angular/core';
+import { NgGenericPipe } from 'ng-generic-pipe';
 
 @Component({
   selector: 'app-root',
   template: `
     <div>{{ undefined | ngGenericPipe: test:i }}</div>
-    <button (click)="onUpdate()">Update</button>
-  `
+    <button (click)="onUpdate()">Update</button>`,
+  standalone: true,
+  imports: [NgGenericPipe],
 })
 export class AppComponent {
 
@@ -211,12 +201,13 @@ You can call from template a component's method `testAsync()` that return observ
 
 ```ts
 import { Component } from '@angular/core';
+import { NgGenericPipe } from 'ng-generic-pipe';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <div>{{ 'hello!' | ngGenericPipe: testAsync | async }}</div>
-  `
+  template: `<div>{{ 'hello!' | ngGenericPipe: testAsync | async }}</div>`,
+  standalone: true,
+  imports: [NgGenericPipe],
 })
 export class AppComponent {
 
