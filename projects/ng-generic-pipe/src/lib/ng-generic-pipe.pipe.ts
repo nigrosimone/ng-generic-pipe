@@ -45,3 +45,8 @@ export class NgGenericPipe implements PipeTransform {
     return fnReference.apply((this.cdRef as EmbeddedViewRef<Type<any>>).context, [headArgument, ...tailArguments]);
   }
 }
+
+/** 
+ * @deprecated import standalone NgGenericPipe
+ */
+export const NgGenericPipeModule = NgGenericPipe;
