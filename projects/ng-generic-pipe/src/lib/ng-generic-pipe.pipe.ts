@@ -14,6 +14,28 @@ export class NgGenericPipe implements PipeTransform {
 
   private cdRef = inject(ChangeDetectorRef)
 
+  /**
+   * Generic pipe for Angular application for use a component method into component template.
+   *
+   * ### Usage
+   *
+   * ```ts
+   * import { Component } from '@angular/core';
+   * import { NgGenericPipe } from 'ng-generic-pipe';
+   * 
+   * @Component({
+   *   selector: 'app-root',
+   *   template: `<div>{{ 'Simone' | ngGenericPipe: sayHello }}</div>`,
+   *   standalone: true,
+   *   imports: [NgGenericPipe],
+   * })
+   * export class AppComponent {
+   *   sayHello(name: string): string {
+   *     return `Hello! I'm ${name}.`; 
+   *   }
+   * }
+   * ```
+   */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public transform<T, K extends (...args: any) => ReturnType<K>>(
     headArgument: First<Parameters<K>>,
