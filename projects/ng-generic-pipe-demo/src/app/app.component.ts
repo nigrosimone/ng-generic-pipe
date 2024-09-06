@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { NgGenericPipe } from 'projects/ng-generic-pipe/src/public-api';
 import { Observable, of } from 'rxjs';
 

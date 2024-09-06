@@ -1,14 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChangeDetectorRef, EmbeddedViewRef, inject, Type } from '@angular/core';
-import { Pipe } from '@angular/core';
-import { PipeTransform } from '@angular/core';
+import { ChangeDetectorRef, EmbeddedViewRef, inject, Type, Pipe, PipeTransform } from '@angular/core';
 
 type OmitFirstArg<F> = F extends (x: any, ...args: infer P) => infer R ? (...args: P) => R : never;
-
 type First<T> = T extends [infer U, ...any[]] ? U : any;
-
 type TailArguments<F> = [..._: Parameters<OmitFirstArg<F>>, ...args: any];
-
 
 @Pipe({
   name: 'ngGenericPipe',
