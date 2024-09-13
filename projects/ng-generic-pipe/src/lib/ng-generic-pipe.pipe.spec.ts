@@ -16,7 +16,7 @@ describe('NgGenericPipe: Component', () => {
         expect(fixture.debugElement.nativeElement.textContent).toContain('6');
     });
 
-    it('test basic function arg', () => {
+    it('test basic function arg with and scope', () => {
         @Component({ template: '{{ 3 | ngGenericPipe: test }}', standalone: true, imports: [NgGenericPipe] })
         class TestComponent {
             public y = 2;
@@ -29,7 +29,7 @@ describe('NgGenericPipe: Component', () => {
         expect(fixture.debugElement.nativeElement.textContent).toContain('6');
     });
 
-    it('test basic function arg', () => {
+    it('test basic function with arg', () => {
         @Component({ template: '{{ 3 | ngGenericPipe: test:3 }}', standalone: true, imports: [NgGenericPipe] })
         class TestComponent {
             public y = 2;
@@ -42,7 +42,7 @@ describe('NgGenericPipe: Component', () => {
         expect(fixture.debugElement.nativeElement.textContent).toContain('18');
     });
 
-    it('test basic function arg', () => {
+    it('test basic function with additional arg', () => {
         @Component({ template: '{{ 3 | ngGenericPipe: test:3:time }}', standalone: true, imports: [NgGenericPipe] })
         class TestComponent {
             public y = 2;
