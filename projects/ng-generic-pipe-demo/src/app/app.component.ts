@@ -10,7 +10,7 @@ import { Observable, of } from 'rxjs';
   template: `<main>
   <!-- testFromPipe has a third parameter name for trigger pipe refresh -->
   PIPE: {{ "arg1" | ngGenericPipe: testFromPipe:'arg2':name }}<br /><br />
-  <!-- wrong way for call a function nto html just for test the result -->
+  <!-- wrong way for call a function into html just for test the result -->
   HTML: {{ testFromHtml("arg1", "arg2") }}<br /><br />
   <button (click)="triggerCD(false)">test</button>
   <button (click)="triggerCD(true)">test2</button>
