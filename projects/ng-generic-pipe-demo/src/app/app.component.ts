@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgGenericPipe } from 'projects/ng-generic-pipe/src/public-api';
 import { Observable, of } from 'rxjs';
@@ -9,11 +9,11 @@ import { Observable, of } from 'rxjs';
   selector: 'app-root',
   template: `<main>
   <!-- testFromPipe has a third parameter name for trigger pipe refresh -->
-  PIPE: {{ "arg1" | ngGenericPipe: testFromPipe:'arg2':name }}<br /><br />
+  PIPE: {{ "arg1" | ngGenericPipe: testFromPipe:'arg2':name() }}<br /><br />
   <!-- wrong way for call a function into html just for test the result -->
   HTML: {{ testFromHtml("arg1", "arg2") }}<br /><br />
-  <button (click)="triggerCD(false)">test</button>
-  <button (click)="triggerCD(true)">test2</button>
+  <button (click)="triggerCD(false)">update</button>
+  <button (click)="triggerCD(true)">force update</button>
   <br /><br />
   PIPE: {{ '0' | ngGenericPipe: testAsync | async }}<br /><br />
 </main>
@@ -23,7 +23,7 @@ import { Observable, of } from 'rxjs';
 })
 export class AppComponent {
 
-  public name: number | null = null;
+  public name = signal(0);
 
   constructor() {
     this.triggerCD(false);
@@ -31,7 +31,7 @@ export class AppComponent {
 
   test(a: string, b: string): string {
     // test multiple arguments and this scope works
-    return `a:${a}; b:${b}; name:${this.name};`;
+    return `a:${a}; b:${b}; name:${this.name()};`;
   }
 
   testFromHtml(a: string, b: string): string {
@@ -45,9 +45,10 @@ export class AppComponent {
   }
 
   triggerCD(force: boolean): void {
-    this.name = new Date().getMinutes();
-    if( force ){
-      this.name++;
+    if (force) {
+      this.name.update(val => val + 1);
+    } else {
+      this.name.set(new Date().getMinutes());
     }
   }
 
