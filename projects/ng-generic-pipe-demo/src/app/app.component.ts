@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
   <button (click)="triggerCD(false)">update</button>
   <button (click)="triggerCD(true)">force update</button>
   <br /><br />
-  PIPE: {{ '0' | ngGenericPipe: testAsync | async }}<br /><br />
+  PIPE: {{ arg1() | ngGenericPipe: testAsync | async }}<br /><br />
 </main>
 `,
   standalone: true,
