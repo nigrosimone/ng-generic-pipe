@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { NgGenericPipe, NgGenericPipeModule } from '../public-api';
 
-describe('NgGenericPipe: Component', () => {
+describe('NgGenericPipe', () => {
     it('should works with ngModule', () => {
         @Component({ template: '{{ 3 | ngGenericPipe: test }}', standalone: true, imports: [NgGenericPipeModule] })
         class TestComponent {
