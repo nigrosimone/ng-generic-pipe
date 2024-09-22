@@ -32,8 +32,7 @@ import { NgGenericPipe } from 'ng-generic-pipe';
 @Component({
   selector: 'app-root',
   template: `<div>{{ 'Simone' | ngGenericPipe: sayHello }}</div>`,
-  standalone: true,
-  imports: [NgGenericPipe],
+  imports: [NgGenericPipe]
 })
 export class AppComponent {
     sayHello(name: string): string {
@@ -104,8 +103,7 @@ import { NgGenericPipe } from 'ng-generic-pipe';
 @Component({
   selector: 'app-root',
   template: '<div>{{ 3 | ngGenericPipe: test }}</div>',
-  standalone: true,
-  imports: [NgGenericPipe],
+  imports: [NgGenericPipe]
 })
 export class AppComponent {
 
@@ -128,8 +126,7 @@ import { NgGenericPipe } from 'ng-generic-pipe';
 @Component({
   selector: 'app-root',
   template: '<div>{{ 3 | ngGenericPipe: test:3 }}</div>',
-  standalone: true,
-  imports: [NgGenericPipe],
+  imports: [NgGenericPipe]
 })
 export class AppComponent {
 
@@ -152,8 +149,7 @@ import { NgGenericPipe } from 'ng-generic-pipe';
 @Component({
   selector: 'app-root',
   template: '<div>{{ undefined | ngGenericPipe: test }}</div>',
-  standalone: true,
-  imports: [NgGenericPipe],
+  imports: [NgGenericPipe]
 })
 export class AppComponent {
 
@@ -178,8 +174,7 @@ import { NgGenericPipe } from 'ng-generic-pipe';
   template: `
     <div>{{ undefined | ngGenericPipe: test:i }}</div>
     <button (click)="onUpdate()">Update</button>`,
-  standalone: true,
-  imports: [NgGenericPipe],
+  imports: [NgGenericPipe]
 })
 export class AppComponent {
 
@@ -207,8 +202,7 @@ import { NgGenericPipe } from 'ng-generic-pipe';
 @Component({
   selector: 'app-root',
   template: `<div>{{ 'hello!' | ngGenericPipe: testAsync | async }}</div>`,
-  standalone: true,
-  imports: [NgGenericPipe],
+  imports: [NgGenericPipe]
 })
 export class AppComponent {
 
