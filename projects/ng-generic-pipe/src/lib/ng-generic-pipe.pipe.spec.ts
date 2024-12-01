@@ -4,7 +4,9 @@ import { NgGenericPipe, NgGenericPipeModule } from '../public-api';
 
 describe('NgGenericPipe', () => {
     it('should works with ngModule', () => {
-        @Component({ template: '{{ 3 | ngGenericPipe: test }}', standalone: true, imports: [NgGenericPipeModule] })
+        @Component({
+            template: '{{ 3 | ngGenericPipe: test }}', imports: [NgGenericPipeModule]
+        })
         class TestComponent {
             public y = 2;
             test(x: number): number {
@@ -17,7 +19,9 @@ describe('NgGenericPipe', () => {
     });
 
     it('test basic function arg with and scope', () => {
-        @Component({ template: '{{ 3 | ngGenericPipe: test }}', standalone: true, imports: [NgGenericPipe] })
+        @Component({
+            template: '{{ 3 | ngGenericPipe: test }}', imports: [NgGenericPipe]
+        })
         class TestComponent {
             public y = 2;
             test(x: number): number {
@@ -30,7 +34,9 @@ describe('NgGenericPipe', () => {
     });
 
     it('test basic function with arg', () => {
-        @Component({ template: '{{ 3 | ngGenericPipe: test:3 }}', standalone: true, imports: [NgGenericPipe] })
+        @Component({
+            template: '{{ 3 | ngGenericPipe: test:3 }}', imports: [NgGenericPipe]
+        })
         class TestComponent {
             public y = 2;
             test(x: number, z: number): number {
@@ -43,7 +49,9 @@ describe('NgGenericPipe', () => {
     });
 
     it('test basic function with additional arg', () => {
-        @Component({ template: '{{ 3 | ngGenericPipe: test:3:time }}', standalone: true, imports: [NgGenericPipe] })
+        @Component({
+            template: '{{ 3 | ngGenericPipe: test:3:time }}', imports: [NgGenericPipe]
+        })
         class TestComponent {
             public y = 2;
             public time: number = Date.now();
@@ -57,7 +65,9 @@ describe('NgGenericPipe', () => {
     });
 
     it('test basic function without arg', () => {
-        @Component({ template: '{{ undefined | ngGenericPipe: test }}', standalone: true, imports: [NgGenericPipe] })
+        @Component({
+            template: '{{ undefined | ngGenericPipe: test }}', imports: [NgGenericPipe]
+        })
         class TestComponent {
             public y = 2;
             test(): number {

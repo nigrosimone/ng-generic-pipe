@@ -6,9 +6,9 @@ import { FormsModule } from '@angular/forms';
 
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'app-root',
-  template: `<main>
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'app-root',
+    template: `<main>
     <input [(ngModel)]="arg1" > <input [(ngModel)]="arg2" ><br /><br />
   <!-- testFromPipe has a third parameter name for trigger pipe refresh -->
   PIPE: {{ arg1() | ngGenericPipe: testFromPipe:arg2():name() }}<br /><br />
@@ -20,8 +20,7 @@ import { FormsModule } from '@angular/forms';
   PIPE: {{ arg1() | ngGenericPipe: testAsync | async }}<br /><br />
 </main>
 `,
-  standalone: true,
-  imports: [NgGenericPipe, CommonModule, FormsModule]
+    imports: [NgGenericPipe, CommonModule, FormsModule]
 })
 export class AppComponent {
 
