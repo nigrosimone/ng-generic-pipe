@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChangeDetectorRef, EmbeddedViewRef, inject, Type, Pipe, PipeTransform } from '@angular/core';
+import { ChangeDetectorRef, EmbeddedViewRef, Type, Pipe, PipeTransform } from '@angular/core';
 
 type OmitFirstArg<F> = F extends (x: any, ...args: infer P) => infer R ? (...args: P) => R : never;
 type First<T> = T extends [infer U, ...any[]] ? U : any;
@@ -12,7 +12,12 @@ type TailArguments<F> = [..._: Parameters<OmitFirstArg<F>>, ...args: any[]];
 })
 export class NgGenericPipe implements PipeTransform {
 
-  private cdRef = inject(ChangeDetectorRef)
+  // Fix for https://github.com/nigrosimone/ng-generic-pipe/issues/2 see:
+  // - https://github.com/angular/angular/issues/59868#issuecomment-2640722684
+  // - https://github.com/angular/angular/issues/50952
+  // private cdRef = inject(ChangeDetectorRef);
+
+  constructor(private cdRef: ChangeDetectorRef) {}
 
   /**
    * Generic pipe for Angular application for use a component method into component template.
