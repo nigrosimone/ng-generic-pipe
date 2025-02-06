@@ -1,8 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { NgGenericPipe, NgGenericPipeModule } from '../public-api';
 
 describe('NgGenericPipe', () => {
+    it('should works with deep scope', () => {
+        @Component({
+            // eslint-disable-next-line @angular-eslint/component-selector
+            selector: 'test-component-deep',
+            template: '{{ name }}'
+        })
+        class TestComponentDeepComponent {
+            @Input() name = 0;
+        }
+        @Component({
+            template: '<test-component-deep [name]="3 | ngGenericPipe: test"><test-component-deep>', 
+            imports: [TestComponentDeepComponent, NgGenericPipe]
+        })
+        class TestComponent {
+            public y = 2;
+            test(x: number): number {
+                return x * this.y;
+            }
+        }
+        const fixture = TestBed.createComponent(TestComponent);
+        fixture.detectChanges();
+        expect(fixture.debugElement.nativeElement.textContent).toContain('6');
+    });
+
     it('should works with ngModule', () => {
         @Component({
             template: '{{ 3 | ngGenericPipe: test }}', imports: [NgGenericPipeModule]
