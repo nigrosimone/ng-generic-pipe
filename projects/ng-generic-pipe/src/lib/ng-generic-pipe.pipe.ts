@@ -16,7 +16,7 @@ export class NgGenericPipe implements PipeTransform {
   // - https://github.com/angular/angular/issues/59868#issuecomment-2640722684
   // - https://github.com/angular/angular/issues/50952
   // private cdRef = inject(ChangeDetectorRef);
-
+  // eslint-disable-next-line @angular-eslint/prefer-inject
   constructor(private cdRef: ChangeDetectorRef) {}
 
   /**
