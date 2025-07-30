@@ -45,7 +45,7 @@ export class AppComponent {
 
 `ngGenericPipe` need to pipe on a value. The value become the first argument of the function called by `ngGenericPipe`, eg.:
 
-```
+```ts
 'Hello world!' | ngGenericPipe: writeMessage
 ```
 
