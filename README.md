@@ -41,6 +41,24 @@ export class AppComponent {
 }
 ```
 
+There is also a `NgGenericDirective` if you need to use multiple time the same method into the template, eg.:
+
+```ts
+import { Component } from '@angular/core';
+import { NgGenericDirective } from 'ng-generic-pipe';
+
+@Component({
+  selector: 'app-root',
+  template: `<div *ngGenericPipe="let fn; method: sayHello">{{ fn('Simone') }} {{ fn('Mario') }} {{ fn('Luigi') }}</div>`,
+  imports: [NgGenericDirective]
+})
+export class AppComponent {
+    sayHello(name: string): string {
+      return `Hello! I'm ${name}.`; 
+    }
+}
+```
+
 ## API
 
 `ngGenericPipe` need to pipe on a value. The value become the first argument of the function called by `ngGenericPipe`, eg.:

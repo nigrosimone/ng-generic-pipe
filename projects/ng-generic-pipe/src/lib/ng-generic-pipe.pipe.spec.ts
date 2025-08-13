@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { NgGenericPipe, NgGenericPipeModule } from '../public-api';
 
-describe('NgGenericPipe', () => {
+describe('NgGenericPipe: Pipe', () => {
     it('should works with deep scope', () => {
         @Component({
             // eslint-disable-next-line @angular-eslint/component-selector
