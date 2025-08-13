@@ -63,7 +63,7 @@ export class AppComponent {
 
 `ngGenericPipe` need to pipe on a value. The value become the first argument of the function called by `ngGenericPipe`, eg.:
 
-```
+```ts
 'Hello world!' | ngGenericPipe: writeMessage
 ```
 
@@ -75,7 +75,7 @@ writeMessage('Hello world!')
 
 You can pass, multiple parameter in this way, eg.:
 
-```
+```ts
 'Hello world!' | ngGenericPipe: writeMessage:'Simone'
 ```
 
@@ -87,7 +87,7 @@ writeMessage('Hello world!', 'Simone')
 
 and with more parameters, eg.:
 
-```
+```ts
 'Hello world!' | ngGenericPipe: writeMessage:'Simone':'Foo':'Bar':'Baz'
 ```
 
