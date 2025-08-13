@@ -18,7 +18,8 @@ import { FormsModule } from '@angular/forms';
   <button (click)="triggerCD(true)">force update</button>
   <br /><br />
   PIPE async: {{ arg1() | ngGenericPipe: testAsync | async }}<br /><br />
-  DIRECTIVE async: <ng-content *ngGenericPipe="let fn; method: testAsync">{{ fn(arg1()) | async }}</ng-content>
+  DIRECTIVE async: <ng-content *ngGenericPipe="let fn; method: testAsync">{{ fn(arg1()) | async }}</ng-content><br /><br />
+  HTML async: {{ testAsync(arg1()) | async }}<br /><br />
 </main>
 `,
   changeDetection: ChangeDetectionStrategy.OnPush,
