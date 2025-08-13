@@ -11,13 +11,14 @@ import { FormsModule } from '@angular/forms';
     <input [(ngModel)]="arg1" > <input [(ngModel)]="arg2" ><br /><br />
   <!-- testFromPipe has a third parameter name for trigger pipe refresh -->
   PIPE: {{ arg1() | ngGenericPipe: testFromPipe:arg2():name() }}<br /><br />
+  DIRECTIVE: <ng-content *ngGenericPipe="let fn; method: testFromDirective">{{ fn(arg1(), arg2()) }}</ng-content>
   <!-- wrong way for call a function into html just for test the result -->
   HTML: {{ testFromHtml(arg1(), arg2()) }}<br /><br />
   <button (click)="triggerCD(false)">update</button>
   <button (click)="triggerCD(true)">force update</button>
   <br /><br />
   PIPE async: {{ arg1() | ngGenericPipe: testAsync | async }}<br /><br />
-  DIRECTIVE: <ng-content *ngGenericPipe="let fn; method: testFromDirective">{{ fn(arg1(), arg2()) }}</ng-content>
+  DIRECTIVE async: <ng-content *ngGenericPipe="let fn; method: testAsync">{{ fn(arg1()) | async }}</ng-content>
 </main>
 `,
   changeDetection: ChangeDetectionStrategy.OnPush,
