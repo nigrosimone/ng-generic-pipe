@@ -10,10 +10,10 @@ See the [stackblitz demo](https://stackblitz.com/edit/demo-ng-generic-pipe?file=
 
 ## Features
 
-✅ More than 90% unit tested<br>
+✅ 100% unit tested, types included<br>
 ✅ Use all your component methods as pure pipe with component scope<br>
 ✅ Strong type check<br>
-✅ Only 658 byte (with gzip compression)<br>
+✅ Only 751 byte (minified, with gzip compression)<br>
 
 ## Get Started
 
@@ -230,6 +230,42 @@ export class AppComponent {
 
 }
 ```
+
+## How `this` is resolved, and how to opt out
+
+You pass the method **unbound** (`ngGenericPipe: sayHello`, not `sayHello.bind(this)`), so something
+has to reattach it to your component. `ng-generic-pipe` does that by reading the context out of the
+injected `ChangeDetectorRef`. That works, and the test suite pins it down for the pipe, the
+directive and for methods used inside an `@for` block - but it leans on an Angular implementation
+detail rather than a public API, and it has broken once before
+([#2](https://github.com/nigrosimone/ng-generic-pipe/issues/2)).
+
+If you would rather not depend on it, hand over a function that already carries its own scope.
+Both of these work today and are immune to any future change in how Angular exposes the context:
+
+```ts
+export class AppComponent {
+  private readonly name = 'Simone';
+
+  // bind once, up front
+  readonly sayHello = this.doSayHello.bind(this);
+
+  // ...or use an arrow field, which closes over `this` by construction
+  readonly sayHelloArrow = (greeting: string): string => `${greeting}! I'm ${this.name}.`;
+
+  private doSayHello(greeting: string): string {
+    return `${greeting}! I'm ${this.name}.`;
+  }
+}
+```
+
+```html
+<div>{{ 'Hi' | ngGenericPipe: sayHello }}</div>
+<div>{{ 'Hi' | ngGenericPipe: sayHelloArrow }}</div>
+```
+
+The trade-off is one extra field per method, which is exactly the boilerplate this library exists to
+remove — so reach for it only if you hit the problem.
 
 ## Support
 
