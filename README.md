@@ -10,10 +10,10 @@ See the [stackblitz demo](https://stackblitz.com/edit/demo-ng-generic-pipe?file=
 
 ## Features
 
-✅ More than 90% unit tested<br>
+✅ 100% unit tested, types included<br>
 ✅ Use all your component methods as pure pipe with component scope<br>
 ✅ Strong type check<br>
-✅ Only 658 byte (with gzip compression)<br>
+✅ Only 751 byte (minified, with gzip compression)<br>
 
 ## Get Started
 
