@@ -25,11 +25,12 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "projects/ng-generic-pipe/src/test.ts",
             "tsConfig": "projects/ng-generic-pipe/tsconfig.spec.json",
-            "karmaConfig": "projects/ng-generic-pipe/karma.conf.js"
+            "runner": "vitest",
+            "include": ["**/*.spec.ts"],
+            "coverageReporters": ["html", "lcovonly", "text-summary"]
           }
         },
         "lint": {
@@ -64,18 +65,13 @@
               "base": "dist/ng-generic-pipe-demo"
             },
             "index": "projects/ng-generic-pipe-demo/src/index.html",
-            "polyfills": [
-              "projects/ng-generic-pipe-demo/src/polyfills.ts"
-            ],
             "tsConfig": "projects/ng-generic-pipe-demo/tsconfig.app.json",
             "inlineStyleLanguage": "sass",
             "assets": [
               "projects/ng-generic-pipe-demo/src/favicon.ico",
               "projects/ng-generic-pipe-demo/src/assets"
             ],
-            "styles": [
-              "projects/ng-generic-pipe-demo/src/styles.sass"
-            ],
+            "styles": ["projects/ng-generic-pipe-demo/src/styles.sass"],
             "scripts": [],
             "browser": "projects/ng-generic-pipe-demo/src/main.ts"
           },
@@ -95,8 +91,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "projects/ng-generic-pipe-demo/src/environments/environment.ts",
+                  "with": "projects/ng-generic-pipe-demo/src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -106,6 +102,11 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "testing": {
+              "aot": false,
+              "optimization": false,
+              "extractLicenses": false
             }
           },
           "defaultConfiguration": "production"
@@ -125,25 +126,16 @@
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n",
           "options": {
-            "buildTarget": "ng-generic-pipe-demochio:build"
+            "buildTarget": "ng-generic-pipe-demo:build"
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "projects/ng-generic-pipe-demo/src/test.ts",
-            "polyfills": "projects/ng-generic-pipe-demo/src/polyfills.ts",
             "tsConfig": "projects/ng-generic-pipe-demo/tsconfig.spec.json",
-            "karmaConfig": "projects/ng-generic-pipe-demo/karma.conf.js",
-            "inlineStyleLanguage": "sass",
-            "assets": [
-              "projects/ng-generic-pipe-demo/src/favicon.ico",
-              "projects/ng-generic-pipe-demo/src/assets"
-            ],
-            "styles": [
-              "projects/ng-generic-pipe-demo/src/styles.sass"
-            ],
-            "scripts": []
+            "buildTarget": ":build:testing",
+            "runner": "vitest",
+            "coverageReporters": ["html", "lcovonly", "text-summary"]
           }
         },
         "lint": {
@@ -159,9 +151,7 @@
     }
   },
   "cli": {
-    "schematicCollections": [
-      "@angular-eslint/schematics"
-    ]
+    "schematicCollections": ["@angular-eslint/schematics"]
   },
   "schematics": {
     "@schematics/angular:component": {
