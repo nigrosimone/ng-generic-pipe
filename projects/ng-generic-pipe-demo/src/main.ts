@@ -7,8 +7,6 @@ if (environment.production) {
   enableProdMode();
 }
 
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideZonelessChangeDetection(),
-  ]
+void bootstrapApplication(AppComponent, {
+  providers: [provideZonelessChangeDetection()],
 });

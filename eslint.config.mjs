@@ -1,67 +1,89 @@
-import { defineConfig, globalIgnores } from "eslint/config";
-import globals from "globals";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-import js from "@eslint/js";
-import { FlatCompat } from "@eslint/eslintrc";
+// eslint.config.mjs
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
-});
+import eslint from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import angular from 'angular-eslint';
+import prettier from 'eslint-config-prettier/flat';
 
-export default defineConfig([globalIgnores(["!**/*", "**/test.ts", "**/main.ts"]), {
+export default tseslint.config(
+  {
+    ignores: ['dist/**', 'coverage/**', '.angular/**', 'out-tsc/**'],
+  },
+  {
+    files: ['**/*.ts'],
+    extends: [
+      eslint.configs.recommended,
+      ...tseslint.configs.recommendedTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked,
+      ...angular.configs.tsRecommended,
+    ],
     languageOptions: {
-        globals: {
-            ...globals.jest,
-            ...globals.browser,
-        },
+      parserOptions: {
+        projectService: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
     },
-}, {
-    files: ["**/*.ts"],
-
-    extends: compat.extends(
-        "eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates",
-    ),
-
-    languageOptions: {
-        ecmaVersion: 5,
-        sourceType: "script",
-
-        parserOptions: {
-            project: [
-                "projects/ng-generic-pipe/tsconfig.lib.json",
-                "projects/ng-generic-pipe/tsconfig.spec.json",
-                "projects/ng-generic-pipe-demo/tsconfig.app.json",
-                "projects/ng-generic-pipe-demo/tsconfig.spec.json",
-            ],
-
-            createDefaultProgram: true,
-        },
-    },
-
+    processor: angular.processInlineTemplates,
     rules: {
-        "@angular-eslint/directive-selector": ["error", {
-            type: "attribute",
-            prefix: "ng",
-            style: "camelCase",
-        }],
-
-        "@angular-eslint/component-selector": ["error", {
-            type: "element",
-            prefix: "ng",
-            style: "kebab-case",
-        }],
+      // This library forwards arbitrary component methods, whose signatures it cannot know,
+      // so `any` flows through the pipe and the directive by design.
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unsafe-argument': 'off',
+      '@typescript-eslint/no-unsafe-assignment': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
+      '@typescript-eslint/no-unsafe-member-access': 'off',
+      '@typescript-eslint/no-unsafe-return': 'off',
+      // a leading underscore marks a parameter kept only to satisfy a signature
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
     },
-}, {
-    files: ["**/*.html"],
-    extends: compat.extends("plugin:@angular-eslint/template/recommended"),
-    rules: {},
-}]);
+  },
+  {
+    files: ['projects/ng-generic-pipe/**/*.ts'],
+    rules: {
+      '@angular-eslint/directive-selector': [
+        'error',
+        { type: 'attribute', prefix: 'ng', style: 'camelCase' },
+      ],
+      '@angular-eslint/component-selector': [
+        'error',
+        { type: 'element', prefix: 'ng', style: 'kebab-case' },
+      ],
+    },
+  },
+  {
+    files: ['projects/ng-generic-pipe-demo/**/*.ts'],
+    rules: {
+      '@angular-eslint/directive-selector': [
+        'error',
+        { type: 'attribute', prefix: 'app', style: 'camelCase' },
+      ],
+      '@angular-eslint/component-selector': [
+        'error',
+        { type: 'element', prefix: 'app', style: 'kebab-case' },
+      ],
+    },
+  },
+  {
+    // Test components are declared inline and deliberately break the naming rules.
+    files: ['**/*.spec.ts'],
+    rules: {
+      '@angular-eslint/component-selector': 'off',
+      '@typescript-eslint/dot-notation': 'off',
+      '@typescript-eslint/no-empty-function': 'off',
+      '@typescript-eslint/no-extraneous-class': 'off',
+    },
+  },
+  {
+    files: ['**/*.html'],
+    extends: [...angular.configs.templateRecommended],
+  },
+  // Must stay last: turns off every rule that conflicts with Prettier.
+  prettier,
+);
