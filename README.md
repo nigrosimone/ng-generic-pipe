@@ -6,7 +6,7 @@ Generic pipe for Angular application for use a component method into component t
 
 Sometime there is a need to use a component method into component template. Angular best practice says do not use method into html template, eg. `{{ myMethod(2) }}`. With NgGenericPipe you can use all your public component methods as pure pipe with the component scope (`this`), eg: `{{ 2 | ngGenericPipe: myMethod }}`.
 
-See the [stackblitz demo](https://stackblitz.com/edit/demo-ng-generic-pipe?file=src%2Fapp%2Fapp.component.ts).
+See the [stackblitz demo](https://stackblitz.com/github/nigrosimone/ng-generic-pipe/tree/master/examples/stackblitz).
 
 ## Features
 
