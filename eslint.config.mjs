@@ -78,6 +78,9 @@ export default tseslint.config(
       '@typescript-eslint/dot-notation': 'off',
       '@typescript-eslint/no-empty-function': 'off',
       '@typescript-eslint/no-extraneous-class': 'off',
+      // referencing a method without calling it is the point here: to spy on it,
+      // to assert on its type, or to `.bind()` it
+      '@typescript-eslint/unbound-method': 'off',
     },
   },
   {
