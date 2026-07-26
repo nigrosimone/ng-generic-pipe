@@ -9,7 +9,7 @@ on:
         options: [auto, patch, minor, major]
         default: auto
       version:
-        description: 'Explicit version, e.g. 22.0.1 (overrides the bump: majors follow the Angular major)'
+        description: 'Explicit version, e.g. 23.0.1 (overrides the bump: majors follow the Angular major)'
         type: string
         default: ''
       dry_run:
