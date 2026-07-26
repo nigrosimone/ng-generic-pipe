@@ -1,4 +1,4 @@
-# NgGenericPipe [![Build Status](https://github.com/nigrosimone/ng-generic-pipe/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/nigrosimone/ng-generic-pipe/actions/workflows/node.js.yml) [![NPM version](https://img.shields.io/npm/v/ng-generic-pipe.svg)](https://www.npmjs.com/package/ng-generic-pipe)
+# NgGenericPipe [![Build Status](https://github.com/nigrosimone/ng-generic-pipe/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/nigrosimone/ng-generic-pipe/actions/workflows/node.js.yml) [![NPM version](https://img.shields.io/npm/v/ng-generic-pipe.svg)](https://www.npmjs.com/package/ng-generic-pipe)
 
 Generic pipe for Angular application for use a component method into component template.
 
@@ -6,7 +6,7 @@ Generic pipe for Angular application for use a component method into component t
 
 Sometime there is a need to use a component method into component template. Angular best practice says do not use method into html template, eg. `{{ myMethod(2) }}`. With NgGenericPipe you can use all your public component methods as pure pipe with the component scope (`this`), eg: `{{ 2 | ngGenericPipe: myMethod }}`.
 
-See the [stackblitz demo](https://stackblitz.com/github/nigrosimone/ng-generic-pipe/tree/master/examples/stackblitz).
+See the [stackblitz demo](https://stackblitz.com/github/nigrosimone/ng-generic-pipe/tree/main/examples/stackblitz).
 
 ## Features
 
@@ -104,7 +104,7 @@ Because `ngGenericPipe` is a pure pipe, the method is memoized. This means that 
 
 `ngGenericPipe` has strong type checking
 
-![alt text](https://raw.githubusercontent.com/nigrosimone/ng-generic-pipe/master/help.gif)
+![alt text](https://raw.githubusercontent.com/nigrosimone/ng-generic-pipe/main/help.gif)
 
 ## Examples
 
