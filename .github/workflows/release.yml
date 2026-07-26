@@ -29,6 +29,8 @@ concurrency:
   cancel-in-progress: false
 
 env:
+  # the release commits on the runner: git hooks have no business running there
+  HUSKY: 0
   LIB: ng-generic-pipe
   LIB_DIR: projects/ng-generic-pipe
   DIST_DIR: dist/ng-generic-pipe
